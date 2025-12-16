@@ -5,7 +5,7 @@ export const protect = async (req, res, next) =>{
     const header = req.headers.authorization;
 
     if(!header || !header.startsWith("Bearer ")){
-        return res.status(400),json({
+        return res.status(400).json({
             message: "Token missing"
         });
     }
@@ -33,4 +33,4 @@ export const protect = async (req, res, next) =>{
             message: 'Invalid or expired token'
         })
     }
-}
+};

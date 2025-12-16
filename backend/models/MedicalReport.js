@@ -28,6 +28,9 @@ const MedicalReportSchema = new mongoose.Schema({
         type: String,
         required: true, // Example: blood, xray, etc.
     },
+    reportName: {
+        type: String
+    },
     riskLevel: {
         type: String,
         enum: ['low', 'medium', 'high'], // Restrict to low, medium, or high

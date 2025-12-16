@@ -1,9 +1,10 @@
-import React from 'react'
+import React from 'react';
+import './App.css';
 
 function App() {
   return (
     <div>
-      <h1>AI Medical Report Assistant</h1>
+      
     </div>
   )
 }

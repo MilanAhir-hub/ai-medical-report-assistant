@@ -16,7 +16,7 @@ export const extractText = async (pathOrUrl, fileType) => {
         throw new Error("Unsupported file type");
     }
 
-    // 🛡 Normalize output → ALWAYS STRING
+    // 🛡 Always return string
     if (typeof result === "string") {
         return result;
     }

@@ -31,6 +31,10 @@ const UserSchema = new mongoose.Schema({
         type: Boolean,
         default: false,
     },
+    doctorProfile: {
+        specialization: String,
+        experience: Number
+    },
     status: {
         type: String,
         enum: ['active', 'suspended', 'blocked'], // Restrict to active, suspended, or blocked

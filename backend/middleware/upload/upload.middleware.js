@@ -1,6 +1,5 @@
 // multer upload middleware
 import multer from 'multer';
-import path from 'path';
 import fs from 'fs';
 
 const uploadDir = 'uploads';
@@ -13,7 +12,7 @@ const storage = multer.diskStorage({
         cb(null, uploadDir);
     },
     filename: (req, file, cb) =>{
-        const uniqueName = Date.now() + '-' + file.originalname;
+        const uniqueName = Date.now() + '-' + file.originalname.replace(/\s+/g, '');
         cb(null, uniqueName);
     }
 });

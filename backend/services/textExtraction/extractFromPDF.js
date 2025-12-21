@@ -1,27 +1,23 @@
-import fs from 'fs';
+import axios from "axios";
 import { createRequire } from 'module';
 const require = createRequire(import.meta.url);
 
-export const extractFromPDF = async (localFilePath) => {
+export const extractFromPDF = async (fileUrl) => {
     try {
-        // 1️⃣ Ensure file exists
-        if (!fs.existsSync(localFilePath)) {
-            throw new Error("PDF file not found");
-        }
-
-        // 2️⃣ Read local PDF as buffer
-        const buffer = fs.readFileSync(localFilePath);
-
-        // 3️⃣ Initialize parser with local data
-        const { PDFParse } = require('pdf-parse');
-        const parser = new PDFParse({
-            data: buffer,
+        // Download PDF from Cloudinary
+        const response = await axios.get(fileUrl, {
+            responseType: "arraybuffer",
         });
 
-        // 4️⃣ Extract text
-        const result = await parser.getText();
+        // Parse PDF buffer
+        const { PDFParse } = require('pdf-parse');
+        const parser = new PDFParse({
+            data: response.data,
+        });
 
-        return result.text;
+        const data = await parser.getText();
+
+        return data.text;
 
     } catch (error) {
         console.error("❌ PDF extraction failed:", error.message);

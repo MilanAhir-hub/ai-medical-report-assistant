@@ -22,6 +22,7 @@ const port = process.env.PORT || 5000;
 import authRoutes from './routes/auth/auth.routes.js';
 import userRoutes from './routes/auth/user.routes.js';
 import reportRoutes from './routes/report/report.routes.js';
+import doctorRoutes from './routes/doctor/doctor.routes.js';
 
 
 
@@ -30,6 +31,7 @@ import reportRoutes from './routes/report/report.routes.js';
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/reports', reportRoutes);
+app.use('/api/doctor', doctorRoutes);
 
 
 

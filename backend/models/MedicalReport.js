@@ -20,6 +20,10 @@ const MedicalReportSchema = new mongoose.Schema({
         enum: ['pdf', 'image'], // Restrict to pdf or image
         required: true,
     },
+    summary: {
+        type: String,
+        default: null, // Can be null if text extraction fails
+    },
     extractedText: {
         type: String,
         default: null, // Can be null if text extraction fails
@@ -40,10 +44,22 @@ const MedicalReportSchema = new mongoose.Schema({
         type: Number,
         default: null, // Confidence score for AI analysis
     },
+    assignedDoctor: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    },
     status: {
         type: String,
         enum: ['processing', 'completed', 'failed'], // Restrict to processing, completed, or failed
         default: 'processing',
+    },
+    review_status: {
+        type: String,
+        enum: ['uploaded', 'reviewed'],
+        default: 'uploaded'
+    },
+    normalizedData: {
+        type: Object
     },
 }, {
     timestamps: {
